@@ -1,0 +1,23 @@
+#MULTIPLEXER
+gl:
+  module mux(d0,d1,d2,d3,s0,s1)
+  output y;
+  wire s1,s0,y1,y2,y3,y4;
+  not(s1,s1);
+  not(s0,s0);
+  and(y1,d0,s1,s0);
+  and(y2,d1,s1,s0);
+  and(y3,d2,s1,s0);
+  and(y4,d3,s1,s0);
+  or(y,y1,y2,y3,y4);
+  endmodule
+  
+df:
+  module multiplier(a0, a1, b0, b1, o0, o1, o2, o3);
+  input a0, a1, b0, b1;
+  output o0, o1, o2, o3;
+  assign o0 = a0&b0;
+  assign o1 = (a0&b1)^(a1&b0);
+  assign o2 = (a1&b1)^((a0&b1)&(a1&b0));
+  assign o3 = (a1&b1)&((a0&b1)&(a1&b0));
+  endmodule
