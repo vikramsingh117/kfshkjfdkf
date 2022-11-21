@@ -1,0 +1,14 @@
+
+module enc(y1, y2, a, b, c, d);
+input a, b, c, d;
+output y1, y2;
+assign y1 = (~a & b & ~c & ~d) | (a & ~b & ~c & ~d);
+assign y2 = (~a & ~b & c & ~d) | (a & ~b & ~c & ~d);
+endmodule
+
+module dec(y3, y2, y1, y0, a, b);
+assign y3 = a & b;
+assign y2 = a & ~b;
+assign y1 = ~a & b;
+assign y0 = a & b;
+endmodule
