@@ -13,7 +13,23 @@ gl:
   endmodule
   
 df:
-  module multiplier(a0, a1, b0, b1, o0, o1, o2, o3);
+  module mux(y, s1, s0, q3, q2, q1, q0);
+  input s1, s0, q3, q2, q1, q0;
+  output y;
+  assign y = (~s1&~s0&q0) | (~s1&s0&q1) | (s1&~s0&q2) | (s1&s0&q3);
+  endmodule
+
+module demux(q3, q2, q1, q0, s1, s0, y);
+input s1, s0, y;
+output q3, q2, q1, q0;
+assign q0 = ~s1 & ~s0 & y;
+assign q1 = ~s1 & s0 & y;
+assign q2 = s1 & ~s0 & y;
+assign q3 = s1 & s0 & y;
+endmodule
+
+  
+ module multiplier(a0, a1, b0, b1, o0, o1, o2, o3);
   input a0, a1, b0, b1;
   output o0, o1, o2, o3;
   assign o0 = a0&b0;
