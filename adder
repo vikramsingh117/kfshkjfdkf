@@ -1,0 +1,48 @@
+#HALF ADDER
+df:
+  ha(sum,carry,a,b);
+  output sum, carry;
+  input a,b;
+  assugn sum = a^b;
+  assign carry = a&b;
+  endmodule
+  
+ bh:
+  ha(sum,carry,a,b);
+  output sum,carry;
+  input a,b;
+  reg sum,carry;
+  always @(a,b);
+  sum = a^b;
+  carry = a&b;
+  endmodule
+  
+ st:
+  ha(sum,carry,a,b);
+  output sum,carry;
+  input a,b:
+  xor(sum,a,b);
+  and(carry,a,b);
+  endmodule
+  
+  #FULL SUBTRACTOR
+  df:
+    fs(diff,burrow,a,b,c);
+    output diff,burrow;
+    input a,b,c;
+    assign diff = a^b^c;
+    assign burrow = (~a&b)|(~(a^b)&c);
+    endmodule
+    
+ st:
+    fs(diff,burrow,a,b,c);
+    output diff,burrow;
+    input a,b,c;
+    wire p,q,r,s,t;
+    not (p,a);
+    xor(x,a,b);
+    xor(diff,x,c);
+    and(y,p,b);
+    and(z,~x,c);
+    or(burrow, y,z);
+    endmodule
