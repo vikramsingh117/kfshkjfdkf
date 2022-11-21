@@ -1,0 +1,55 @@
+module srFF(s, r, clk, q);
+input s, r, clk;
+output q;
+reg q;
+always @(posedge clk)
+begin
+case({s,r})
+2'b00 : q = q;
+2'b01 : q = 0;
+2'b10 : q = 1;
+2'b11 : q = ~q;
+endcase
+end
+endmodule
+
+module jkFF(j, k, clk, q);
+input j, k, clk;
+output q;
+reg q;
+always@(posedge clk)
+begin
+case({j, k})
+2'b00 : q = q;
+2'b01 : q = 0;
+2'b10 : q = 1;
+2'b11 : q = 1'bx;
+endcase
+end
+endmodule
+
+module tFF(t, clk, q);
+input t, clk;
+output q;
+reg q;
+always @(posedge clk)
+begin
+case(t)
+1'b0: q = q;
+1'b1: q = ~q;
+endcase 
+end
+endmodule
+
+module dFF(d, clk, q);
+input clk, d;
+output q;
+reg q;
+always @(posedge clk)
+begin
+if(clk==1)
+q = d;
+else
+q = 0;
+end
+endmodule
